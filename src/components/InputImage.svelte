@@ -14,15 +14,14 @@
 <style>
   .custum-file-upload {
     height: 200px;
-    width: 300px;
-    display: flex;
+    width: fit-content;
+    display: inline-block;
     flex-direction: column;
     align-items: space-between;
     gap: 20px;
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    border: 2px dashed #e8e8e8;
     background-color: #212121;
     padding: 1.5rem;
     border-radius: 10px;
