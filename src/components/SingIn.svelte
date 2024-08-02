@@ -50,7 +50,8 @@
     border: none;
     border-radius: 15px;
     cursor: pointer;
-    font-weight: 900;
+    font-weight: 600;
     padding: 12px 15px;
+    font-family: system-ui, sans-serif;
   }
 </style>
