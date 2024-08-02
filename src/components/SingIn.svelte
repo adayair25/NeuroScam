@@ -1,4 +1,5 @@
 <script>
+  import { fade } from "svelte/transition";
   /*import { onMount } from "svelte";
   import { navigate } from "svelte-routing";
   import { auth } from "./stores/auth";
@@ -13,45 +14,43 @@
 
   let showForm = false;
 
-  function togglePopover() {
+  function toggleFrom() {
     showForm = !showForm;
   }
 </script>
 
-<div class:show={showForm} class="form">
-  <form action="">
-    <input type="text" required placeholder="Email" />
-    <input type="password" required placeholder="Password" />
-    <button type="submit"> Sing In </button>
-  </form>
-</div>
-<button id="singIn" type="button" on:click={togglePopover}>Sing In</button>
+{#if showForm}
+  <div class="form" transition:fade={{ delay: 250, duration: 300 }}>
+    <form action="">
+      <input type="text" required placeholder="Email" />
+      <input type="password" required placeholder="Password" />
+      <button type="submit"> Sing In </button>
+    </form>
+  </div>
+{/if}
+
+<button id="singIn" type="button" on:click={toggleFrom}>Sing In</button>
 
 <style>
   .form {
-    display: none;
+    display: block;
     border-radius: 15px;
     position: fixed;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #a8a29e;
+    background-color: #3d3d3d;
     padding: 20px;
     z-index: 1000;
   }
 
-  .form {
-    &.show {
-      display: block;
-    }
-  }
-
   #singIn {
+    background-color: #f6f6f6;
     border: none;
     border-radius: 15px;
     cursor: pointer;
     font-weight: 600;
-    padding: 12px 15px;
+    padding: 10px 15px;
     font-family: system-ui, sans-serif;
   }
 </style>
