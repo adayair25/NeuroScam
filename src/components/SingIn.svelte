@@ -20,11 +20,24 @@
 </script>
 
 {#if showForm}
-  <div class="form" transition:fade={{ delay: 250, duration: 300 }}>
-    <form action="">
-      <input type="text" required placeholder="Email" />
-      <input type="password" required placeholder="Password" />
-      <button type="submit"> Sing In </button>
+  <div class="form" transition:fade={{ delay: 150, duration: 150 }}>
+    <h2>Sing in</h2>
+    <form>
+      <div class="form_inputs">
+
+        <label for="from_label_email">
+          <input type="email" id="from_label_email" class="form_input" placeholder=" " />
+          <span class="form_label">Intro your email</span>
+        </label>
+        
+        <label for="from_label">
+          <input type="password" id="from_label_password" class="form_input" placeholder=" " />
+          <span class="form_label">Intro your password</span>
+        </label>
+
+      </div>
+
+      <button class="form_submit" type="submit">Sing In</button>
     </form>
   </div>
 {/if}
@@ -34,14 +47,26 @@
 <style>
   .form {
     display: block;
+    width: min(350px, 90%);
     border-radius: 15px;
     position: fixed;
+    color: #0a0a0a;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #3d3d3d;
-    padding: 20px;
+    background-color: #d4d4d4;
+    padding: 3rem 1.5rem;
     z-index: 1000;
+  }
+
+  .form_inputs {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .form_label {
+    width: 100%;
+    display: grid;
   }
 
   #singIn {

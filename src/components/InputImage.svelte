@@ -3,7 +3,7 @@
 
 <label for="file" class="custum-file-upload">
   <div class="icon">
-    <img src="/image.svg" alt="" />
+    <img src="/image.svg" alt="image_svg" />
   </div>
   <div class="text">
     <span>Click to upload image</span>
@@ -54,7 +54,7 @@
 
   .custum-file-upload {
     -webkit-animation: scustum-file-upload 3s
-      cubic-bezier(0.25, 0.46, 0.50, 0.70 0.94) infinite alternate;
+      cubic-bezier(0.25, 0.46, 0.5, 0.7 0.94) infinite alternate;
     animation: custum-file-upload 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       infinite alternate;
   }
@@ -64,7 +64,7 @@
  * animation shadow-drop-center
  * ----------------------------------------
  */
- 
+
   @keyframes custum-file-upload {
     0% {
       -webkit-box-shadow: 0 0 0 0 #737373;
