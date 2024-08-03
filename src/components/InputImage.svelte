@@ -14,7 +14,7 @@
 <style>
   .custum-file-upload {
     height: 200px;
-    width: fit-content;
+    width:  350px;
     display: inline-block;
     flex-direction: column;
     align-items: space-between;
@@ -22,7 +22,7 @@
     cursor: pointer;
     align-items: center;
     justify-content: center;
-    background-color: #212121;
+    background-color: #171717;
     padding: 1.5rem;
     border-radius: 10px;
     box-shadow: 0px 48px 35px -48px #e8e8e8;
