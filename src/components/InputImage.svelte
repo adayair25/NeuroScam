@@ -3,7 +3,7 @@
 
 <label for="file" class="custum-file-upload">
   <div class="icon">
-    <img src="/image.svg" alt="" />
+    <img src="/image.svg" alt="">
   </div>
   <div class="text">
     <span>Click to upload image</span>
@@ -32,22 +32,20 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding-top: 1rem;
   }
 
   .custum-file-upload .icon img {
     height: 80px;
-    fill: #e8e8e8;
   }
 
   .custum-file-upload .text {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
+    padding-top: 1rem;
+   }
 
   .custum-file-upload .text span {
     font-weight: 400;
-    color: #e8e8e8;
+    color: d6d3d1;
   }
 
   .custum-file-upload input {
