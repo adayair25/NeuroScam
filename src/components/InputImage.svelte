@@ -51,4 +51,10 @@
   .custum-file-upload input {
     display: none;
   }
+
+  @media (max-width: 720px) {
+    .custum-file-upload {
+      width: 80%;
+    }
+  }
 </style>
