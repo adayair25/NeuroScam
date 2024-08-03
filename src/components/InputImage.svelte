@@ -54,8 +54,8 @@
 
   .custum-file-upload {
     -webkit-animation: scustum-file-upload 3s
-      cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
-    animation: custum-file-upload 3s cubic-bezier(0.25, 0.46, 0.45, 0.94)
+      cubic-bezier(0.25, 0.46, 0.50, 0.70 0.94) infinite alternate;
+    animation: custum-file-upload 2s cubic-bezier(0.25, 0.46, 0.45, 0.94)
       infinite alternate;
   }
 
@@ -64,10 +64,15 @@
  * animation shadow-drop-center
  * ----------------------------------------
  */
+ 
   @keyframes custum-file-upload {
     0% {
       -webkit-box-shadow: 0 0 0 0 #737373;
       box-shadow: 0 0 0 0 #737373;
+    }
+    50% {
+      -webkit-box-shadow: 0 0 20px 0px #737373;
+      box-shadow: 0 0 20px 0px #737373;
     }
     100% {
       -webkit-box-shadow: 0 0 20px 0px #737373;
@@ -76,15 +81,19 @@
   }
 
   @keyframes custum-file-upload {
-  0% {
-    -webkit-box-shadow: 0 0 0 0 #737373;
-            box-shadow: 0 0 0 0 #737373;
+    0% {
+      -webkit-box-shadow: 0 0 0 0 #737373;
+      box-shadow: 0 0 0 0 #737373;
+    }
+    50% {
+      -webkit-box-shadow: 0 0 20px 0px #737373;
+      box-shadow: 0 0 20px 0px #737373;
+    }
+    100% {
+      -webkit-box-shadow: 0 0 20px 0px #737373;
+      box-shadow: 0 0 20px 0px #737373;
+    }
   }
-  100% {
-    -webkit-box-shadow: 0 0 20px 0px #737373;
-            box-shadow: 0 0 20px 0px #737373;
-  }
-}
 
   @media (max-width: 720px) {
     .custum-file-upload {
