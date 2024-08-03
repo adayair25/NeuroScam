@@ -45,7 +45,7 @@
 
   .custum-file-upload .text span {
     font-weight: 400;
-    color: d6d3d1;
+    color: #d6d3d1;
   }
 
   .custum-file-upload input {
