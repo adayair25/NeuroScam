@@ -3,7 +3,9 @@
 
 <label for="file" class="custum-file-upload">
   <div class="icon">
-    <img src="/image.svg" alt="image_svg" />
+    <img 
+    src="/image.svg" 
+    alt="image_svg" />
   </div>
   <div class="text">
     <span>Click to upload image</span>
