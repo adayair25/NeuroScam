@@ -50,11 +50,10 @@
     width: min(350px, 90%);
     border-radius: 15px;
     position: fixed;
-    color: #0a0a0a;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    background-color: #d4d4d4;
+    background-color: #171717;
     padding: 3rem 1.5rem;
     z-index: 1000;
   }

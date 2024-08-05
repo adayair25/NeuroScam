@@ -11,7 +11,7 @@ import SingIn from "../components/SingIn.svelte";
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content="Astro description" />
+    <meta name="description" content="NeuroScan" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/logo.svg" />
     <meta name="generator" content={Astro.generator} />
@@ -21,17 +21,40 @@ import SingIn from "../components/SingIn.svelte";
     <header>
       <a class="logo" href="/">
         <picture>
-          <img width="30" height="30" src="/logo.svg" alt="logo" />
+          <img 
+          width="30" 
+          height="30" 
+          src="/logo.svg" 
+          alt="logo" />
         </picture>
       </a>
-      <nav>
-        <a target="_blank" href="https://github.com/adayair25">
-          <picture>
-            <img width="30" height="30" src="/github.svg" alt="github_logo" />
-          </picture>
-        </a>
+      <div class="elements">
+        <nav>
+          <a target="_blank" href="https://github.com/adayair25">
+            <picture>
+              <img 
+              width="30" 
+              height="30" 
+              src="/github.svg" 
+              alt="github_logo" />
+            </picture>
+          </a>
+          <a
+            target="_blank"
+            href="https://www.linkedin.com/in/adair-sanchez-dev/"
+          >
+            <picture>
+              <img
+                width="30"
+                height="29"
+                src="/linkedin.svg"
+                alt="linkedin_logo"
+              />
+            </picture>
+          </a>
+        </nav>
         <SingIn client:load />
-      </nav>
+      </div>
     </header>
     <slot />
   </body>
@@ -54,14 +77,15 @@ import SingIn from "../components/SingIn.svelte";
     padding: 0.5rem;
   }
 
-  nav {
+  .elements {
     display: flex;
     align-items: center;
-    gap: 10px;
   }
 
-  .logo {
+  nav {
     display: flex;
-    align-items: center;
+    align-items: end;
+    gap: 0.5rem;
+    margin-right: 0.5rem;
   }
 </style>
