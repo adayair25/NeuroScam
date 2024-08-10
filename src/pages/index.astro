@@ -15,20 +15,8 @@ import InputImage from "../components/InputImage.svelte";
     </div>
     <InputImage />
   </main>
-  <section class="fq">
-    
-  </section>
 </Layout>
-<script>
-  document.addEventListener("DOMContentLoaded", () => {
-    const questions = document.querySelectorAll("h3");
-    questions.forEach((question) => {
-      question.addEventListener("click", () => {
-        question.nextElementSibling.classList.toggle("answer");
-      });
-    });
-  });
-</script>
+
 <style>
   .answer {
     display: none;

@@ -1,16 +1,41 @@
 <script>
   import { fade } from "svelte/transition";
-  /*import { onMount } from "svelte";
-  import { navigate } from "svelte-routing";
-  import { auth } from "./stores/auth";
+  import { onMount } from "svelte";
+  import api from "../lib/api";
 
-  onMount(() => {
-    auth.subscribe((value) => {
-      if (value) {
-        navigate("/");
+  onMount(async () => {
+    const res = await api.get("/users/");
+    console.log(res.data);
+  });
+
+
+  let username = "".trim();
+  let email = "".trim();
+  let password = "".trim();
+  let confirm_password = "".trim();
+
+  const handleSubmit = async () => {
+    if (password !== confirm_password) {
+      alert("Passwords do not match");
+      return;
+    }
+    try {
+      const data = {
+        username,
+        email,
+        password,
+      };
+      await api.post('/users/', data);
+      const tokens = await api.post('/login/', { username, password });
+      console.log(tokens.data);
+      localStorage.setItem('token', tokens.data.access);
+      toggleFrom();
       }
-    });
-  });*/
+    catch (error) {
+      alert(`Error: User already exists ${error.code, error.response.status}`);
+      console.log(error.code, error.response.status);
+    }
+  };
 
   let showForm = false;
 
@@ -22,19 +47,42 @@
 {#if showForm}
   <div class="form" transition:fade={{ delay: 150, duration: 150 }}>
     <h2>Sing in</h2>
-    <form>
+    <form on:submit|preventDefault={handleSubmit}>
       <div class="form_inputs">
+        <label for="username"> Name </label>
+          <input
+            bind:value={username}
+            required 
+            autocomplete="on"
+            type="text"
+            id="username"
+            placeholder="name"
+          />
+        <label for="email"> Email </label>
+          <input
+            bind:value={email}
+            required
+            autocomplete="on"
+            type="email"
+            id="email"
+            placeholder="email"
+            />
 
-        <label for="from_label_email">
-          <input type="email" id="from_label_email" class="form_input" placeholder=" " />
-          <span class="form_label">Intro your email</span>
-        </label>
-        
-        <label for="from_label">
-          <input type="password" id="from_label_password" class="form_input" placeholder=" " />
-          <span class="form_label">Intro your password</span>
-        </label>
+        <label for="password"> Password </label>
+          <input
+            bind:value={password}
+            required 
+            type="password" 
+            id="password" 
+            placeholder="password" />
 
+        <label for="confirm_password"> Confirm Password </label>
+          <input 
+            bind:value={confirm_password}
+            required
+            type="password" 
+            id="confirm_password" 
+            placeholder="password" />
       </div>
 
       <button class="form_submit" type="submit">Sing In</button>
@@ -61,11 +109,6 @@
   .form_inputs {
     display: grid;
     gap: 1.5rem;
-  }
-
-  .form_label {
-    width: 100%;
-    display: grid;
   }
 
   #singIn {
