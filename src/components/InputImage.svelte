@@ -41,7 +41,7 @@
     } catch (error) {
       console.log(error.response.status);
       
-      alert("Error: Please try again");
+      alert("Error: Sing in please");
       window.location.reload();
       
     }
@@ -183,12 +183,7 @@
     }
   }
 
-  @media (max-width: 720px) {
-    .custum-file-upload {
-      width: 80%;
-    }
-  }
-
+  
   /* button */
   button {
     --color: #007acc;
@@ -209,7 +204,7 @@
     color: #0a0a0a;
     font-family: system-ui, sans-serif;
   }
-
+  
   button:before {
     content: "";
     position: absolute;
@@ -219,30 +214,30 @@
     width: 200px;
     border-radius: 50%;
   }
-
+  
   button:hover {
     color: #fafafa;
     border: 2px solid var(--color);
   }
-
+  
   button:before {
     top: 100%;
     left: 100%;
     transition: all 0.3s;
   }
-
+  
   button:hover:before {
     top: -30px;
     left: -30px;
   }
-
+  
   /* loader */
   .loader {
     width: 80px;
     height: 50px;
     position: relative;
   }
-
+  
   .loader-text {
     position: absolute;
     top: 0;
@@ -254,7 +249,7 @@
     letter-spacing: 1px;
     font-family: system-ui, sans-serif;
   }
-
+  
   .load {
     background-color: #007acc;
     border-radius: 50px;
@@ -266,7 +261,7 @@
     transform: translateX(64px);
     animation: loading_713 2.5s ease both infinite;
   }
-
+  
   .load::before {
     position: absolute;
     content: "";
@@ -276,85 +271,90 @@
     border-radius: inherit;
     animation: loading2_713 2.5s ease both infinite;
   }
-
+  
   @keyframes text_713 {
     0% {
       letter-spacing: 1px;
       transform: translateX(0px);
     }
-
+    
     40% {
       letter-spacing: 2px;
       transform: translateX(26px);
     }
-
+    
     80% {
       letter-spacing: 1px;
       transform: translateX(32px);
     }
-
+    
     90% {
       letter-spacing: 2px;
       transform: translateX(0px);
     }
-
+    
     100% {
       letter-spacing: 1px;
       transform: translateX(0px);
     }
   }
-
+  
   @keyframes loading_713 {
     0% {
       width: 16px;
       transform: translateX(0px);
     }
-
+    
     40% {
       width: 100%;
       transform: translateX(0px);
     }
-
+    
     80% {
       width: 16px;
       transform: translateX(64px);
     }
-
+    
     90% {
       width: 100%;
       transform: translateX(0px);
     }
-
+    
     100% {
       width: 16px;
       transform: translateX(0px);
     }
   }
-
+  
   @keyframes loading2_713 {
     0% {
       transform: translateX(0px);
       width: 16px;
     }
-
+    
     40% {
       transform: translateX(0%);
       width: 80%;
     }
-
+    
     80% {
       width: 100%;
       transform: translateX(0px);
     }
-
+    
     90% {
       width: 80%;
       transform: translateX(15px);
     }
-
+    
     100% {
       transform: translateX(0px);
       width: 16px;
+    }
+  }
+  @media (max-width: 720px) {
+    .custum-file-upload {
+      width: 80%;
     }
   }
 </style>
