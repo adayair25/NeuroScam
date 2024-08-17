@@ -1,13 +1,18 @@
 <script>
   import { fade } from "svelte/transition";
-  import { onMount } from "svelte";
   import api from "../lib/api";
+  import { onMount } from 'svelte'
+  
+    /*onMount(async () => {
+      const res = await api.get("/users/");
+      console.log(res.data);
+    });*/
 
-  onMount(async () => {
-    const res = await api.get("/users/");
-    console.log(res.data);
-  });
-
+  export function logout() {
+    localStorage.removeItem('jwt');
+    isAuthenticated.set(false);
+    window.location.href = '/';
+}
 
   let username = "".trim();
   let email = "".trim();
@@ -25,14 +30,22 @@
         email,
         password,
       };
-      await api.post('/users/', data);
-      const tokens = await api.post('/login/', { username, password });
+      await api.post("/users/", data);
+      const tokens = await api.post(
+        "/login/",
+        { username, password },
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
       console.log(tokens.data);
-      localStorage.setItem('token', tokens.data.access);
+      localStorage.setItem("token", tokens.data.access);
       toggleFrom();
-      }
-    catch (error) {
-      alert(`Error: User already exists ${error.code, error.response.status}`);
+    } catch (error) {
+      alert(
+        `Error: User already exists ${(error.code, error.response.status)}`
+      );
       console.log(error.code, error.response.status);
     }
   };
@@ -45,44 +58,46 @@
 </script>
 
 {#if showForm}
-  <div class="form" transition:fade={{ delay: 150, duration: 150 }}>
+  <div class="form" transition:fade={{ delay: 150, duration: 150 }}></div>
     <h2>Sing in</h2>
     <form on:submit|preventDefault={handleSubmit}>
       <div class="form_inputs">
         <label for="username"> Name </label>
-          <input
-            bind:value={username}
-            required 
-            autocomplete="on"
-            type="text"
-            id="username"
-            placeholder="name"
-          />
+        <input
+          bind:value={username}
+          required
+          autocomplete="on"
+          type="text"
+          id="username"
+          placeholder="name"
+        />
         <label for="email"> Email </label>
-          <input
-            bind:value={email}
-            required
-            autocomplete="on"
-            type="email"
-            id="email"
-            placeholder="email"
-            />
+        <input
+          bind:value={email}
+          required
+          autocomplete="on"
+          type="email"
+          id="email"
+          placeholder="email"
+        />
 
         <label for="password"> Password </label>
-          <input
-            bind:value={password}
-            required 
-            type="password" 
-            id="password" 
-            placeholder="password" />
+        <input
+          bind:value={password}
+          required
+          type="password"
+          id="password"
+          placeholder="password"
+        />
 
         <label for="confirm_password"> Confirm Password </label>
-          <input 
-            bind:value={confirm_password}
-            required
-            type="password" 
-            id="confirm_password" 
-            placeholder="password" />
+        <input
+          bind:value={confirm_password}
+          required
+          type="password"
+          id="confirm_password"
+          placeholder="password"
+        />
       </div>
 
       <button class="form_submit" type="submit">Sing In</button>
