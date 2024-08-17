@@ -58,7 +58,7 @@
 </script>
 
 {#if showForm}
-  <div class="form" transition:fade={{ delay: 150, duration: 150 }}></div>
+  <div class="form" transition:fade={{ delay: 150, duration: 150 }}>
     <h2>Sing in</h2>
     <form on:submit|preventDefault={handleSubmit}>
       <div class="form_inputs">
