@@ -83,23 +83,11 @@
   </picture>
 {/if}
 
-<h1>Powered by <span class="CEUNO">CEUNO</span></h1>
-
 <style>
   img {
     border-radius: 1rem;
   }
 
-  h1 {
-    font-size: 3rem;
-    color: #fafafa;
-    text-align: center;
-    margin-top: 2rem;
-
-    & .CEUNO {
-      color: #007acc;
-    }
-  }
   .custum-file-upload {
     height: 200px;
     width: 350px;
