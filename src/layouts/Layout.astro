@@ -4,7 +4,6 @@ interface Props {
 }
 
 const { title } = Astro.props;
-import SingIn from "../components/SingIn.svelte";
 ---
 
 <!doctype html>
@@ -59,7 +58,7 @@ import SingIn from "../components/SingIn.svelte";
             >
           </a>
         </nav>
-        <SingIn client:load />
+       <button id="singIn">Sing In</button>
       </div>
     </header>
     <slot />
@@ -113,5 +112,15 @@ import SingIn from "../components/SingIn.svelte";
     align-items: center;
     gap: 0.5rem;
     margin-right: 0.5rem;
+  }
+
+  #singIn {
+    background-color: #f6f6f6;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-weight: 600;
+    padding: 10px 15px;
+    font-family: system-ui, sans-serif;
   }
 </style>

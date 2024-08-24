@@ -1,6 +1,6 @@
 <script lang="ts">
   import { fade } from "svelte/transition";
-  import api from "../lib/api.js";
+  import api from "../lib/api.mjs";
 
   interface LoginResponse {
     access: string;

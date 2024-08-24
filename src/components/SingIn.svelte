@@ -1,12 +1,10 @@
-<script>
-  import { fade } from "svelte/transition";
-  import Login from "./Login.svelte";
-  import api from "../lib/api";
+<script lang="ts">
+  import { blur } from "svelte/transition";
+  import api from "../lib/api.mjs";
   import { onMount } from "svelte";
+  import { expoIn } from "svelte/easing";
 
-  let isAuthenticated = false;
-  let showForm = false;
-  let showLogin = false;
+  let isAuthenticated:boolean;
 
   onMount(() => {
     if (localStorage.getItem("token")) {
@@ -14,16 +12,10 @@
     }
   });
 
-  function logout() {
-    localStorage.removeItem("token");
-    isAuthenticated = false;
-    window.location.href = "/";
-  }
-
-  let username = "".trim();
-  let email = "".trim();
-  let password = "".trim();
-  let confirm_password = "".trim();
+  let username: string = "".trim();
+  let email: string = "".trim();
+  let password: string | number = "".trim();
+  let confirm_password: string | number = "".trim();
 
   const handleSubmit = async () => {
     if (password !== confirm_password) {
@@ -48,73 +40,70 @@
       console.log(tokens.data);
       localStorage.setItem("token", tokens.data.access);
       window.location.reload();
-    } catch (error) {
-      alert(
-        `Error: User already exists ${(error.code, error.response.status)}`
-      );
-      console.log(error.code, error.response.status);
+    } catch (error: unknown) {
+      if (error instanceof Error) {
+        console.log(error.message);
+      }
+      if (typeof (error as any).response === "object") {
+        console.log((error as any).code, (error as any).response.status);
+      } else {
+        console.log("Error does not have a response object.");
+      }
+      alert("Error: User already exists");
+      window.location.reload();
     }
   };
-
-  function toggleFrom() {
-    showLogin = false;
-    showForm = !showForm;
-  }
-
-  function toggleLogin() {
-    toggleFrom();
-    showLogin = !showLogin;
-  }
 </script>
 
-{#if showForm}
-  <div class="form-box" transition:fade={{ delay: 100, duration: 100 }}>
-    <form class="form" on:submit|preventDefault={handleSubmit}>
-      <span class="title">Sign up</span>
-      <span class="subtitle">Create a free account</span>
-      <div class="form-container">
-        <input
-          required
-          minlength="3"
-          type="text"
-          class="input"
-          placeholder="Name"
-        />
-        <input
-          required
-          minlength="8"
-          type="email"
-          class="input"
-          placeholder="Email"
-        />
-        <input
-          required
-          minlength="8"
-          type="password"
-          class="input"
-          placeholder="Password"
-        />
-        <input
+<div
+  class="form-box"
+  transition:blur={{ delay: 0, duration: 200, amount: "2rem", easing: expoIn }}
+>
+  <form class="form" on:submit|preventDefault={handleSubmit}>
+    <span class="title">Sign up</span>
+    <span class="subtitle">Create a free account</span>
+    <div class="form-container">
+      <input
+        required
+        minlength="3"
+        type="text"
+        class="input"
+        placeholder="Name"
+        bind:value={username}
+      />
+      <input
+        required
+        minlength="8"
+        type="email"
+        class="input"
+        placeholder="Email"
+        bind:value={email}
+      />
+      <input
+        required
+        minlength="8"
+        type="password"
+        class="input"
+        placeholder="Password"
+        bind:value={password}
+      />
+      <input
         required
         minlength="8"
         type="password"
         class="input"
         placeholder="Confirm Password"
+        bind:value={confirm_password}
       />
-      </div>
-      <button>Sign up</button>
-    </form>
-    <div class="form-section">
-      <p>Have an account? <a href="/">Log in</a></p>
     </div>
+    <button type="submit">Sign up</button>
+  </form>
+  <div class="form-section">
+    <p>Have an account? <a href="/">Log in</a></p>
   </div>
-{/if}
+</div>
 
-{#if isAuthenticated}
-  <button id="singIn" on:click={logout}>Log Out</button>
-{:else if !isAuthenticated}
-  <button id="singIn" type="button" on:click={toggleFrom}>Sing In</button>
-{/if}
+<button id="singIn" type="button" on:click={console.log}>Sing In</button>
 
 <style>
   .form-box {
