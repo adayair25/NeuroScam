@@ -39,7 +39,7 @@
       imgElement.src = imageUrl;
       refIMG.focus();
     } catch (error) {
-      console.log(error.response.status);
+      console.log(error.status);
       
       alert("Error: Sing in please");
       window.location.reload();

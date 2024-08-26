@@ -1,16 +1,9 @@
 <script lang="ts">
   import { blur } from "svelte/transition";
   import api from "../lib/api.mjs";
-  import { onMount } from "svelte";
   import { expoIn } from "svelte/easing";
 
-  let isAuthenticated:boolean;
-
-  onMount(() => {
-    if (localStorage.getItem("token")) {
-      isAuthenticated = true;
-    }
-  });
+  export let show: boolean = false;
 
   let username: string = "".trim();
   let email: string = "".trim();
@@ -52,58 +45,67 @@
       alert("Error: User already exists");
       window.location.reload();
     }
+
   };
+  //filter: blur(5px);
+  //transition: filter 0.3s ease;
+
 </script>
 
-<div
-  class="form-box"
-  transition:blur={{ delay: 0, duration: 200, amount: "2rem", easing: expoIn }}
->
-  <form class="form" on:submit|preventDefault={handleSubmit}>
-    <span class="title">Sign up</span>
-    <span class="subtitle">Create a free account</span>
-    <div class="form-container">
-      <input
-        required
-        minlength="3"
-        type="text"
-        class="input"
-        placeholder="Name"
-        bind:value={username}
-      />
-      <input
-        required
-        minlength="8"
-        type="email"
-        class="input"
-        placeholder="Email"
-        bind:value={email}
-      />
-      <input
-        required
-        minlength="8"
-        type="password"
-        class="input"
-        placeholder="Password"
-        bind:value={password}
-      />
-      <input
-        required
-        minlength="8"
-        type="password"
-        class="input"
-        placeholder="Confirm Password"
-        bind:value={confirm_password}
-      />
+{#if show}
+  <div
+    class="form-box"
+    transition:blur={{
+      delay: 0,
+      duration: 150,
+      amount: "2rem",
+      easing: expoIn,
+    }}
+  >
+    <form class="form" on:submit|preventDefault={handleSubmit}>
+      <span class="title">Sign up</span>
+      <span class="subtitle">Create a free account</span>
+      <div class="form-container">
+        <input
+          required
+          minlength="3"
+          type="text"
+          class="input"
+          placeholder="Name"
+          bind:value={username}
+        />
+        <input
+          required
+          minlength="8"
+          type="email"
+          class="input"
+          placeholder="Email"
+          bind:value={email}
+        />
+        <input
+          required
+          minlength="8"
+          type="password"
+          class="input"
+          placeholder="Password"
+          bind:value={password}
+        />
+        <input
+          required
+          minlength="8"
+          type="password"
+          class="input"
+          placeholder="Confirm Password"
+          bind:value={confirm_password}
+        />
+      </div>
+      <button type="submit">Sign up</button>
+    </form>
+    <div class="form-section">
+      <p>Have an account? <a href="/">Log in</a></p>
     </div>
-    <button type="submit">Sign up</button>
-  </form>
-  <div class="form-section">
-    <p>Have an account? <a href="/">Log in</a></p>
   </div>
-</div>
-
-<button id="singIn" type="button" on:click={console.log}>Sing In</button>
+{/if}
 
 <style>
   .form-box {
@@ -112,11 +114,11 @@
     left: 50%;
     transform: translate(-50%, -50%);
     z-index: 9999;
-    max-width: 300px;
-    background: #f1f7fe;
+    width: 370px;
+    background: #171717;
     overflow: hidden;
     border-radius: 16px;
-    color: #010101;
+    color: #fafafa;
   }
 
   .form {
@@ -131,19 +133,19 @@
   /*Form text*/
   .title {
     font-weight: bold;
-    font-size: 1.6rem;
+    font-size: 2.5rem;
   }
 
   .subtitle {
     font-size: 1rem;
-    color: #666;
+    color: "#d4d4d46";
   }
 
   /*Inputs box*/
   .form-container {
     overflow: hidden;
     border-radius: 8px;
-    background-color: #fff;
+    background-color: #404040;
     margin: 1rem 0 0.5rem;
     width: 100%;
   }
@@ -154,16 +156,18 @@
     outline: 0;
     height: 40px;
     width: 100%;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid #27272a;
     font-size: 0.9rem;
     padding: 8px 15px;
+    color: #fafafa;
+    font-family: system-ui, sans-serif;
   }
 
   .form-section {
     padding: 16px;
     font-size: 0.85rem;
-    background-color: #e0ecfb;
-    box-shadow: rgb(0 0 0 / 8%) 0 -1px;
+    background-color: #262626;
+    box-shadow: rgba(255, 255, 255, 0.226) 0 -1px;
   }
 
   .form-section a {
@@ -179,7 +183,7 @@
 
   /*Button*/
   .form button {
-    background-color: #0066ff;
+    background-color: #007acc;
     color: #fff;
     border: 0;
     border-radius: 24px;
@@ -191,21 +195,18 @@
   }
 
   .form button:hover {
-    background-color: #005ce6;
-  }
-  #singIn {
-    background-color: #f6f6f6;
-    border: none;
-    border-radius: 15px;
-    cursor: pointer;
-    font-weight: 600;
-    padding: 10px 15px;
-    font-family: system-ui, sans-serif;
+    background-color: #0756ce;
   }
 
-  @media (max-width: 720px) {
-    .form {
-      width: 90%;
+  @media (max-width: 768px) {
+    .form-box {
+      width: 60%;
+    }
+  }
+
+  @media (max-width: 550px) {
+    .form-box {
+      width: 80%;
     }
   }
 </style>
